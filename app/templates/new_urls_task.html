@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+
+<form id="new-urls-task" action="" method="post" name="new_urls_task" enctype="multipart/form-data">
+    {{form.hidden_tag()}}
+    <p>
+        <span>Task title:</span> {{form.task_title(size=30)}}
+        <span>Priority:</span> {{form.priority}}<br>
+        <span>Import URLs:</span> {{form.csv_file}}<br>
+    </p>
+    <p><input type="submit" value="Create new task"></p>
+</form>
+
+{% endblock %}

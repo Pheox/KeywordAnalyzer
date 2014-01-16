@@ -1,0 +1,54 @@
+
+/*
+    Stylesheet for forms.
+    Author: Vladimir Brigant
+    Contact: vladimirbrigant@gmail.com
+
+    Color scheme:
+    #ccae8f
+    #806c59
+    #e6dacf
+    #bf9060
+*/
+
+
+form{
+    text-align: center;
+}
+
+
+
+
+
+#new-kw-task {
+    text-align: left;
+    margin-top: 3em;
+    margin-left: 12em;
+}
+
+#new-kw-task span{
+    font-weight: bold;
+}
+
+
+#new-urls-task {
+    text-align: left;
+    margin-top: 3em;
+    margin-left: 12em;
+}
+
+#new-urls-task span{
+    font-weight: bold;
+}
+
+
+#config-form {
+    text-align: left;
+    margin-top: 3em;
+}
+
+
+#config-form span{
+    font-weight: bold;
+}
+

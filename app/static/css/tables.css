@@ -1,0 +1,146 @@
+
+/*
+    Stylesheet for tables.
+    Author: Vladimir Brigant
+    Contact: vladimirbrigant@gmail.com
+
+    Color scheme:
+    #ccae8f
+    #806c59
+    #e6dacf
+    #bf9060
+*/
+
+table
+{
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 1em;
+    text-align: center;
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3em;
+}
+
+
+table th
+{
+    padding: 8px;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 13px;
+    color: #e6dacf; /* #039 */
+    background: #806c59; /* #b9c9fe */
+}
+
+table td
+{
+    padding: 8px;
+    background: #ccae8F;
+    border-top: 3px solid #fff;
+    color: #806c59;
+}
+
+
+table td a
+{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+
+table tbody tr:hover td
+{
+    background: #bf9060;
+}
+
+table tbody tr:hover td
+{
+    color: black;
+}
+
+table tbody .state{
+    width: 11ex;
+}
+
+table tbody tr:hover .state
+{
+    font-weight: bold;
+}
+
+.undone-tasks td{
+    opacity: 0.3;
+}
+
+
+table .hidden-task{
+    opacity: 0.6;
+}
+
+
+table .button-cell {
+    padding-left: 0.2em;
+    padding-right: 0.2em;
+    width: 8ex;
+}
+
+table .button-cell form{
+    margin: 0;
+}
+
+table .button-cell input{
+    cursor:pointer;
+    border: none;
+    background-color: #e6dacf;
+}
+
+
+table .path-cell{
+    max-width: 40ex;
+    min-width: 40ex;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: left;
+}
+
+
+table .path-cell:hover{
+    white-space: normal;
+}
+
+table .date-cell{
+    width: 10ex;
+}
+
+
+.pagination{
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+.pagination a{
+    text-decoration: none;
+    color: #806c59;
+}
+
+.pagination span{
+    font-size: 1.5em;
+    color: #806c59;
+}
+
+
+#table-all-tasks{
+    margin-bottom: 1em;
+}
+
+
+#table-show-task{
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+#table-search-results}{
+
+}

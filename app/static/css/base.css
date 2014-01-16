@@ -1,0 +1,114 @@
+
+/*
+    Stylesheet for base design.
+    Author: Vladimir Brigant
+    Contact: vladimirbrigant@gmail.com
+
+    Color scheme:
+    #ccae8f
+    #806c59
+    #e6dacf
+    #bf9060
+*/
+
+
+/***** GENERAL *****/
+
+body{
+    margin-top: 0;
+    margin-bottom: 0;
+    background-color: #e6dacf;
+}
+
+.server-button{
+    cursor: pointer;
+    border: none;
+    font-size: 1.5em;
+}
+
+#start-button{
+    background-color: #00c600;
+}
+
+#stop-button{
+    background-color: #c60000;
+}
+
+h2 {
+    text-align: center;
+    font-weight: normal;
+    color: #806c59;
+}
+
+h2 span {
+    font-weight: bold;
+}
+
+
+/***** TITLE *****/
+
+#title{
+    /* background-image:url(/static/img/areca.jpeg); */
+    font-family: serif;
+    color: #bf9060;
+    margin: 2em;
+}
+
+#title > h1{
+    text-align: center;
+    margin-top: 0;
+    font-size: 3em;
+}
+
+#title a{
+    text-decoration: none;
+    color: #806c59;
+}
+
+
+
+/***** MENU *****/
+
+#menu{
+    text-align: center;
+}
+
+#menu li{
+    display:inline;
+    width: auto;
+    padding:0 1.5em;
+    border-left: 2px solid black;
+}
+
+#menu ul li a {
+  text-decoration: none;
+  padding: 0.5em;
+  color: #806c59;
+}
+
+#menu li:first-child{
+    border-left:none;
+}
+
+#menu a:hover{
+    text-decoration: underline;
+}
+
+#menu form, #menu p{
+    display: inline;
+}
+
+#menu ul li a.on{
+    color:black;
+    background-color: #ccae8f;
+}
+
+
+/***** FOOTER *****/
+
+#footer{
+    text-align: center;
+    margin-bottom: -1em;
+    font-size: 1em;
+    display:none;
+}

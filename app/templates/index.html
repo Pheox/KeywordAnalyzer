@@ -1,0 +1,299 @@
+
+{% extends "base.html" %}
+{% block content %}
+
+
+
+<!--
+<form action="/statistics" method="post" name="statistics">
+  <p><input type="submit" value="Statistics"></p>
+</form>
+-->
+
+
+
+
+<!-- ALL TASKS -->
+
+
+<!-- <h2>All Tasks</h2> -->
+
+
+ <table id="table-all-tasks">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Priority</th>
+      <th>Keyword</th>
+      <th>Engine</th>
+      <th>Language</th>
+      <th>Searches</th>
+      <th>Found</th>
+      <th>Date</th>
+      <th>DA &gt;</th>
+      <th>PA &gt;</th>
+      <th>MR &gt;</th>
+      <th>PR &gt;</th>
+      <th>SR &gt;</th>
+      <th>State</th>
+      <th colspan="4" class="button-cell">
+        <form action="/show_hidden" method="post" name="show_hidden">
+          {% if show_hidden %}
+            <p><input type="submit" value="Unshow hidden" name="hidden"></p>
+          {% else %}
+            <p><input type="submit" value="Show hidden" name="hidden"></p>
+          {% endif %}
+          </form>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if tasks %}
+
+    {% for task in tasks.items %}
+
+    {% if task.hide_flag %}
+    <tr class="hidden-task">
+    {% else %}
+    <tr>
+    {% endif %}
+
+      <td><a href="{{ url_for('show_results', page_tasks=tasks.page,
+                    task_id=task.id, page_results=1) }}">
+          {{task.title}}</a></td>
+
+
+      <td>{{task.priority}}</td>
+
+      {% if task.keyword %}
+        <td>{{task.keyword.title}}</td>
+        <td>{{task.engine}}</td>
+        <td>{{task.language}}</td>
+        <td>{{task.searches_done}}/{{task.max_searches}}</td>
+        <td>{{task.kw_pages.count()}}</td>
+      {% else %}
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>{{task.searches_done}}/{{task.max_searches}}</td>
+        <td>{{task.pages.count()}}</td>
+      {% endif %}
+
+
+      <td class="date-cell">{{momentjs(task.date).format("D. M. YYYY h:mm a")}}</td>
+
+      {% if task.keyword %}
+        <td>{{task.filter.da_th}}</td>
+        <td>{{task.filter.pa_th}}</td>
+        <td>{{task.filter.mr_th}}</td>
+        <td>{{task.filter.pr_th}}</td>
+        <td>{{task.filter.sr_th}}</td>
+      {% else %}
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+      {% endif %}
+
+      <td class="state">{{task.state.state_str}}</td>
+
+      <td class="button-cell">
+      <form action="{{url_for('change_state')}}" method="post">
+        <input type="hidden" value="{{task.id}}" name="task_id"></input>
+        <input type="submit"
+        {% if task.hide_flag %}
+        disabled="disabled"
+        {% endif %}
+
+        {% if task.state.state_str == 'stopped'%}
+        value="Continue"
+        {% elif task.state.state_str == 'completed' %}
+        value="Restart"
+        {% else %}
+        value="Stop"
+        {% endif %}
+        ></input>
+      </form>
+      </td>
+
+      <td class="button-cell">
+      <form action="{{url_for('hide_task')}}" method="post">
+        <input type="hidden" value="{{task.id}}" name="to_hide"></input>
+        {% if task.hide_flag %}
+        <input type="submit" value="Unhide" name="visibility"></input>
+        {% else %}
+        <input type="submit" value="Hide" name="visibility"></input>
+        {% endif %}
+      </form>
+      </td>
+
+      <td class="button-cell">
+      <form  action="{{url_for('delete_task', task_id=task.id)}}" method="post">
+        <input type="submit" value="Delete"></input>
+      </form>
+      </td>
+
+      <td class="button-cell">
+        <form action="{{url_for('export', task_name=task.title)}}.csv"
+              method="post">
+          <input type="hidden" value="{{task.id}}" name="to_export"></input>
+          <input type="hidden" value="{{task.keyword.title}}" name="kw"></input>
+          {% if task.pages.count() or task.kw_pages.count() %}
+          <input type="submit" value="CSV export"></input>
+          {% else %}
+          <input type="submit" value="CSV export" disabled="disabled"></input>
+          {% endif %}
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+
+  {% else %}
+    <tr id="no_tasks">
+      <td>No tasks are scheduled right now.</p></td>
+    </tr>
+
+  {% endif %}
+
+  </tbody>
+</table>
+
+
+
+{% if tasks.pages > 1 %}
+
+<div class="pagination">
+  {%- for task in tasks.iter_pages() %}
+    {% if task %}
+      {% if task != tasks.page %}
+        <a href="{{ url_for('show_task', page_tasks=task) }}">{{ task }}</a>
+      {% else %}
+        <span>{{ task }}</span>
+      {% endif %}
+    {% else %}
+      <span class="ellipsis">…</span>
+    {% endif %}
+  {%- endfor %}
+<!--
+  {% if tasks.has_next %}
+    <a href="{{ url_for('show_task', page_tasks=tasks.next_num) }}">Next &raquo;</a>
+  {% endif %}
+-->
+  </div>
+
+{% endif %}
+
+
+
+<!-- Show task results if specified -->
+
+{% if show_task_results %}
+
+  <h2> Results for task <span>{{show_task.title}}</span>
+    {% if show_task.keyword_id %}
+      (keyword <span>{{show_task.keyword.title}}</span>)
+    {% endif %}
+  </h2>
+
+ <table id="table-show-task">
+  <thead>
+    <tr>
+      <th>Result No.</th>
+      <th>Engine Position</th>
+      <th>Domain</th>
+      <th>DA</th>
+      <th>Page Path</th>
+      <th>PA</th>
+      <th>MR</th>
+      <th>PR</th>
+      <th>SR</th>
+    </tr>
+  </thead>
+  <tbody>
+      {% set counter = (show_task_results.page-1)*show_task_results.per_page %}
+    {% for result in show_task_results.items %}
+      {% set counter = counter + 1 %}
+
+    {% if show_task.keyword_id %}
+
+    <tr>
+      <td>{{counter}}</td>
+      <td>{{result.engine_position}}</td>
+      <td class="path-cell"><a href="http://{{result.page.domain.url}}">{{result.page.domain.url}}</a></td>
+      <td>{{"{0:0.2f}".format(result.page.domain.da)}}</td>
+      <td class="path-cell"><a href="http://{{result.page.domain.url}}{{result.page.path}}">{{result.page.path}}</a></td>
+      <td>{{"{0:0.2f}".format(result.page.pa)}}</td>
+      <td>{{"{0:0.3f}".format(result.page.mr)}}</td>
+      {% if result.page.pr == -1 %}
+      <td>N/A</td>
+      {% else %}
+      <td>{{result.page.pr}}</td>
+      {% endif %}
+      <td>{{result.page.sr}}</td>
+    </tr>
+
+    {% else %}
+    {#
+      result[0] - TaskPage
+      result[1] - Page
+      result[2] - Domain
+    #}
+    {% if result.done_flag %}
+    <tr>
+    {% else %}
+    <tr class="undone-tasks">
+    {% endif %}
+      <td>{{show_task_results.page}}</td>
+      <td>-</td>
+      <td class="path-cell"><a href="http://{{result.page.domain.url}}">{{result.page.domain.url}}</a></td>
+      <td>{{"{0:0.2f}".format(result.page.domain.da)}}</td>
+
+      <td class="path-cell"><a href="http://{{result.page.domain.url}}{{result.page.path}}">{{result.page.path}}</a></td>
+      <td>{{"{0:0.2f}".format(result.page.pa)}}</td>
+      <td>{{"{0:0.3f}".format(result.page.mr)}}</td>
+      {% if result.page.pr == -1 %}
+      <td>N/A</td>
+      {% else %}
+      <td>{{result.page.pr}}</td>
+      {% endif %}
+      <td>{{result.page.sr}}</td>
+    </tr>
+    {% endif %}
+
+    {% endfor %}
+  </tbody>
+</table>
+
+
+{% if show_task_results.pages > 1 %}
+
+<div class="pagination">
+  {%- for page in show_task_results.iter_pages() %}
+    {% if page %}
+      {% if page != show_task_results.page %}
+        <a href="{{ url_for('show_results', page_tasks=tasks.page,
+                    task_id=show_task.id,
+                    page_results=page) }}">{{ page }}</a>
+      {% else %}
+        <span>{{ page }}</span>
+      {% endif %}
+    {% else %}
+      <span class="ellipsis">…</span>
+    {% endif %}
+  {%- endfor %}
+<!--
+  {% if show_task_results.has_next %}
+    <a href="{{ url_for('show_results', page_tasks=tasks.page,
+                task_id=show_task.id,
+                page_results=show_task_results.next_num) }}">Next &raquo;</a>
+  {% endif %}
+-->
+  </div>
+
+{% endif %}
+
+
+{% endif %}
+
+{% endblock %}

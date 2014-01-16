@@ -1,0 +1,75 @@
+<html>
+  <head>
+    <title>{{title}}</title>
+
+
+    <link rel="stylesheet" href="{{url_for('static', filename='css/base.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/tables.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/forms.css')}}">
+
+
+    <script
+        src="{{url_for('static', filename='js/moment.min.js')}}">
+    </script>
+    <script
+        type="text/javascript" charset="utf-8" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js" >
+    </script>
+    <script
+        type="text/javascript" charset="utf-8" src="{{url_for('static', filename='js/cookies.js')}}">
+    </script>
+    <script
+        type="text/javascript" charset="utf-8" src="{{url_for('static', filename='js/onInit.js')}}">
+    </script>
+
+  </head>
+
+  <body>
+    <div id="title">
+    <h1><a href="/">Keyword Analyzer</a></h1>
+    </div>
+
+    <div id="menu">
+      <ul>
+        <li>
+            {% if not is_alive %}
+            <form action="/start" method="post" name="start">
+                <p>
+                <input class="server-button" id="start-button" type="submit" value="Start server">
+            </p>
+            </form>
+            {% else %}
+            <form action="/stop" method="post" name="stop">
+            <p><input class="server-button" id="stop-button" type="submit" value="Stop server"></p>
+            </form>
+            {% endif %}
+        </li>
+
+        <li><a href="/">View tasks</a></li>
+        <li><a href="/new_kw_task">New Keyword Task</a></li>
+        <li><a href="/new_urls_task">New URLs Task</a></li>
+        <li><a href='/search'>Keyword Search</a></li>
+        <li><a href='/settings'>Settings</a></li>
+        <li><a href='/about'>About</a></li>
+      </ul>
+    </div>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+    {% for message in messages %}
+        <li>{{ message }} </li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+
+
+    {% block content %}{% endblock %}
+  </body>
+
+
+    <div id="footer">
+        Contact: vladimirbrigant@gmail.com
+    </div>
+
+</html>

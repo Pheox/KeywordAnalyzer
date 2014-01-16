@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+
+<h3> Stats </h3>
+
+<ul>
+    <li>MOZ queries: {{ stats.moz_queries }}</li>
+    <li>Google queries: {{ stats.google_queries }}</li>
+    <li>Yahoo queries: {{ stats.yahoo_queries }}</li>
+</ul>
+
+
+
+<form id="config-form" action="" method="post" name="settings">
+    {{form.hidden_tag()}}
+    <p>
+        <span>Tasks per page:</span> {{form.tasks_per_page}}<br>
+        <span>Results per page:</span> {{form.results_per_page}}<br>
+    </p>
+    <p><input class="submit-new" type="submit" value="Save changes"></p>
+</form>
+
+
+{% endblock %}

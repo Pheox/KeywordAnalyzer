@@ -34,3 +34,13 @@ nosetests.xml
 .mr.developer.cfg
 .project
 .pydevproject
+
+## app specific
+flask/
+lib/.tmp/
+db_repository/
+tmp/
+tmp/app.log
+pencil/
+app.db
+app/translations/

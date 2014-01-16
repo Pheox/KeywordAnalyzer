@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+
+
+<form id="new-kw-task" action="" method="post" name="new_task">
+    {{form.hidden_tag()}}
+    <p>
+        <span>Task title:</span> {{form.task_title(size=15)}}
+        <span>Priority:</span> {{form.priority}}<br>
+        <span>Keyword:</span> {{form.keyword(size=15)}}<br>
+        <span>Search Engine:</span> {{form.engine}}
+        <span>Language:</span> {{form.language}} <br>
+        <span>Search in first</span>
+            {{form.max_searches(size=10)}} results <br>
+        <span>Domain Authority (DA) ></span> {{form.da_th(size=5)}}
+        <span>Page Authority (PA) ></span> {{form.pa_th(size=5)}} <br>
+        <span>MOZ Rank (MR) ><span> {{form.mr_th(size=5)}} <br>
+        <span>Page Rank (PR) ><span> {{form.pr_th(size=5)}}
+        <span>S-Rank (SR) ><span> {{form.sr_th(size=5)}} <br>
+    </p>
+    <p><input class="submit-new" type="submit" value="Create new task"></p>
+</form>
+
+{% endblock %}
