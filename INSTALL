@@ -1,0 +1,29 @@
+Environment setup
+=================
+
+$ git clone git@github.com:VladoBrigant/KeywordAnalyzer.git
+$ cd KeywordAnalyzer
+$ pip install flask-wtf==0.8.4
+$ pip install setuptools==0.8
+$ python setup.py
+
+
+
+Example of production setup (tested on Debian Wheezy)
+=====================================================
+
+FcgidIPCDir /tmp
+AddHandler fcgid-script .fcgi
+
+<VirtualHost *:81>
+	DocumentRoot  /home/client/projects/keyword_analyzer/KeywordAnalyzer/app/static
+	Alias /static /home/client/projects/keyword_analyzer/KeywordAnalyzer/app/static
+	ScriptAlias / /home/client/projects/keyword_analyzer/KeywordAnalyzer/runp-sqlite.fcgi/
+
+	ErrorLog ${APACHE_LOG_DIR}/error.log
+
+	# Possible values include: debug, info, notice, warn, error, crit
+	LogLevel debug
+
+	CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>

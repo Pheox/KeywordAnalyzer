@@ -1,18 +1,22 @@
+===============
 KeywordAnalyzer
 ===============
 
-# Author: Vladimir Brigant
-# Contact: vladimirbrigant@gmail.com
-# Phone number: +420 775 242 658
 
 Environment
------------
+===========
+$ pip install flask-wtf==0.8.4
+$ pip install setuptools==0.8
 $ python setup.py
-$ <env>/bin/pip install flask-wtf==0.8.4
+
+Apache
+======
+
+
 
 
 Project dir structure
----------------------
+=====================
 ./app/           - app package
     sengines/
     seomoz/
@@ -32,8 +36,10 @@ Project dir structure
 ./tests.py
 
 
-TODO's
-------
+TODO
+====
+- script - howto setup web Apache
+- create stable/gui/yahoo branches
 - Configuration - check if exists - __ini__.py ?
 - Settings page - zobrazuje sa stale Start server (namiesto Stop)
 - moznost zobrazeni 5, 10, 50, 100 searches na stranku, nyni je 5
