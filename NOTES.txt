@@ -1,3 +1,9 @@
+Known issues
+============
+- "Unable to open database file" -> dir containing db needs to have 777 perms
+- "No module named flask.ext.wtf.TextField" -> fields now defined in wtforms
+
+
 Flask-Babel (localization)
 --------------------------
 * from flask.ext.babel import gettext
