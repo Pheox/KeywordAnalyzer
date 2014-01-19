@@ -1,5 +1,5 @@
-from flask.ext.wtf import HiddenField, Form, Required
-from wtforms import TextField, BooleanField, SelectField, FileField
+from flask.ext.wtf import Form
+from wtforms import TextField, BooleanField, SelectField, FileField, HiddenField
 from wtforms.validators import Required
 
 from kw_analyzer import LANGS_DICT
