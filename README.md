@@ -13,8 +13,6 @@ Apache
 ======
 
 
-
-
 Project dir structure
 =====================
 ./app/           - app package
@@ -38,13 +36,12 @@ Project dir structure
 
 TODO
 ====
-- script - howto setup web Apache
-- create stable/gui/yahoo branches
-- Configuration - check if exists - __ini__.py ?
-- Settings page - zobrazuje sa stale Start server (namiesto Stop)
+- refactorize the code + add comments
+- create interface for yahoo module
+- Configuration - check if exists in database - __ini__.py ?
 - moznost zobrazeni 5, 10, 50, 100 searches na stranku, nyni je 5
     - hodit do settings tabu
-    - configuracna tabulka? - vytvorit config form + submit button - neskor cez AJAX, nastavit korektne select field podla config objektu v tabulke!
+    - configuracna tabulka - vytvorit config form + submit button - neskor cez AJAX, nastavit
 - moznost serazeni searches dle hlavicky, alespon Title, Language, DA
 - inkrementovanie google queries
 - radit aj podla stavu ?? - running/queued/stopped/completed
@@ -54,7 +51,6 @@ TODO
 - error logging do jedneho mailu, jednoho app.error.log stringu!
 - refactoring - views.py, index.html
 - implementovat vyber search enginu
-- zkulturnit views - in progress
 - aktualnost parametrov stranok nastavit aspon na 3 dni
     - viac uloh pre rovnake klucove slovo zrejme nefunguju spravne
     - spravne pripocitavanie found ?
