@@ -3,14 +3,17 @@ KeywordAnalyzer
 ===============
 
 
+Dependencies
+============
+mysql-client libmysqlclient-dev
+libpq-dev
+
+
 Environment
 ===========
 $ pip install flask-wtf==0.8.4
 $ pip install setuptools==0.8
 $ python setup.py
-
-Apache
-======
 
 
 Project dir structure
@@ -36,6 +39,8 @@ Project dir structure
 
 TODO
 ====
+- jenkins - make dev env and run the project
+- jenkins - install job - in virtualenv
 - refactorize the code + add comments
 - create interface for yahoo module
 - Configuration - check if exists in database - __ini__.py ?

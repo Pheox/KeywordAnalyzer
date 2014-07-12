@@ -44,3 +44,6 @@ tmp/app.log
 pencil/
 app.db
 app/translations/
+
+# dev env directory
+.dev/
