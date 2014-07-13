@@ -91,14 +91,14 @@ class TaskDAO(object):
     def get_task_to_process():
         state = TaskState.query.filter(TaskState.state_str == 'queued').first()
 
-        task = Task.query.filter(Task.state_id == state.id, Task.hide_flag is False).\
+        task = Task.query.filter(Task.state_id == state.id, Task.hide_flag == False).\
             order_by(Task.priority.desc(), Task.date).first()
         return task
 
     @staticmethod
     def get_undone_task_pages(task):
         task_pages = TaskPage.query.filter(
-            TaskPage.task_id == task.id, TaskPage.done_flag is False)
+            TaskPage.task_id == task.id, TaskPage.done_flag == False)
         return task_pages
 
     @staticmethod
@@ -182,7 +182,7 @@ class TaskDAO(object):
             tasks = Task.query.order_by(Task.priority.desc(), Task.date).\
                 paginate(page_tasks, tasks_per_page, False)
         else:
-            tasks = Task.query.filter(Task.hide_flag is False).\
+            tasks = Task.query.filter(Task.hide_flag == False).\
                 order_by(Task.priority.desc(), Task.date).\
                 paginate(page_tasks, tasks_per_page, False)
         return tasks
@@ -299,7 +299,7 @@ class TaskPageDAO(object):
     def get_task_pages(task):
         return TaskPage.query.\
             filter(TaskPage.task_id == task.id).\
-            filter(TaskPage.done_flag is True).\
+            filter(TaskPage.done_flag == True).\
             join(Page).join(Domain).all()
 
     @staticmethod

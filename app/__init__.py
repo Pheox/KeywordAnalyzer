@@ -55,4 +55,4 @@ from analyzer_config import AnalyzerConfig
 # keyword analyzer configuration
 analyzer_config = AnalyzerConfig()
 
-# from app import views, models
+from app import views, models
