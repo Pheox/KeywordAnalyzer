@@ -12,9 +12,6 @@ $ python setup.py
 Apache
 ======
 
-
-
-
 Project dir structure
 =====================
 ./app/           - app package

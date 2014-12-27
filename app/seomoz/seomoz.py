@@ -17,7 +17,6 @@ authorities = l.urlMetrics(['www.seomoz.org'], lsapi.UMCols.domainAuthority | ls
 
 
 
-
 TODO's:
 -  1. Seomoz class
 -  Proxy class - !!
@@ -32,7 +31,6 @@ needed:
 - metrics: domain_authority (pda), page_authority (upa), moz_rank(umrp, umrr)
 """
 
-
 import hashlib # sha1
 import hmac # hash message authentication code
 import time
@@ -43,7 +41,6 @@ try:
   import simplejson as json
 except:
   import json
-
 
 
 class SeomozException(Exception):
@@ -239,7 +236,6 @@ class Seomoz:
       TargetCols = target_cols,
       SourceCols = source_cols,
       linkCols   = link_cols)
-
 
 ### Testing MAIN ###
 
