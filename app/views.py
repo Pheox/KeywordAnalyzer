@@ -41,7 +41,7 @@ def settings():
   Only one configuration object for now.
   """
   stats = StatisticsDAO.get_stats()
-  
+
   form = ConfigForm()
   if form.validate_on_submit():
     ConfigurationDAO.set_tasks_per_page(form.tasks_per_page.data)
@@ -174,7 +174,7 @@ def search():
   # get all languages of tasks for specific keyword
   kw_langs = TaskDAO.get_kw_langs(kw_id)
 
-  form.language.choices = [(kw_lang.task.language, LANGS_DICT[kw_lang.task.language]) 
+  form.language.choices = [(kw_lang.task.language, LANGS_DICT[kw_lang.task.language])
     for kw_lang in kw_langs]
 
   # get language ID
@@ -211,12 +211,12 @@ def index(task_id=None, page_tasks=1, page_results=0):
   show_task = None
 
   config = ConfigurationDAO.get_config()
-  tasks = TaskDAO.get_paginated_tasks(page_tasks, config.tasks_per_page, 
+  tasks = TaskDAO.get_paginated_tasks(page_tasks, config.tasks_per_page,
     show_hidden_flag)
 
   if task_id:
     show_task = TaskDAO.get_task(task_id)
-    show_task_results = TaskDAO.get_task_results(task_id, page_results, 
+    show_task_results = TaskDAO.get_task_results(task_id, page_results,
       config.results_per_page)
 
   return render_template('index.html', title='Keyword Analyzer',
@@ -291,19 +291,19 @@ def add_urls_task(form):
     page_urls.append(page_url)
 
   task = TaskDAO.add_task(
-    title=form.task_title.data, 
+    title=form.task_title.data,
     date=datetime.utcnow(),
-    max_searches=len(page_urls), 
-    state_str='queued', 
+    max_searches=len(page_urls),
+    state_str='queued',
     priority=form.priority.data
   )
-  
+
   for page_url in page_urls:
     # need to parse and save both domain and page
     page = PageFeatures()
     page.page = page_url[0]
 
-    domain = DomainDAO.get_or_update_domain(page.domain, page.da) 
+    domain = DomainDAO.get_or_update_domain(page.domain, page.da)
     page_db = PageDAO.get_or_update_domain_page(page.domain, page.path, domain)
 
     TaskPageDAO.add_task_page(task.id, page_db.id)
