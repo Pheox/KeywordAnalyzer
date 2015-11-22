@@ -1,8 +1,9 @@
 #!/bin/sh
 
 # create virtualenv:
-#	virtualenv flask
-#	source flask/bin/activate
+#	$ virtualenv flask
+#	$ source flask/bin/activate
+# $ ./create_dev_env.sh
 
 # install DB specific packages:
 # 	sudo aptitude install mysql-server

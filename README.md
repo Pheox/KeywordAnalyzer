@@ -88,3 +88,15 @@ TODO
   may affect XML search results, especially on international queries
   when language restriction (using the lr parameter) is not explicitly
   specified
+
+INFO
+====
+- pip packages
+  python -m pip install Babel==0.9.6
+  python -m pip uninstall Babel
+
+  Error: pg_config executable not found.
+  - install libpq-dev
+
+  ImportError: cannot import name exceptions
+    - be sure SQLAlchemy 0.7.9 is installed
